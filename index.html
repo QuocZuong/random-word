@@ -12,18 +12,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
     <script src="./main.js" defer></script>
+
 </head>
 
 <body>
     <div class="container">
-        <div class="function">
-            <button id="generateButton">Generate</button>
-            <button id="copyButton">Copy</button>
-            <input id="fileInput" type="file"></input>
-            <button type="reset" id="resetButton">Reset</button>
-            <button type="button" class="dark-mode-btn" id="darkModeBtn">Dark mode</button>
+        <div class="mini-container">
+            <div class="function">
+                <button id="generateButton">Generate</button>
+                <button id="copyButton">Copy</button>
+                <input id="fileInput" type="file"></input>
+                <button type="reset" id="resetButton">Reset</button>
+                <button type="button" class="dark-mode-btn" id="darkModeBtn">Dark mode</button>
+            </div>
+            <div class="number-of-word" id="numberOfWord">Number of word: <textarea class="input-number" name="inputNumber" id="inputNumber" cols="4" rows="1" wrap="off">100</textarea></div>
         </div>
-        <div class="number-of-word" id="numberOfWord">Number of word: <textarea class="input-number" name="inputNumber" id="inputNumber" cols="4" rows="1" wrap="off">100</textarea></div>
+
         <div class="quote-display" id="quoteDisplay"></div>
         <textarea name="inputWord" id="inputWord" cols="39" rows="5"></textarea>
         <button type="button" id="upToHeader" class="up-to-header"><img src="./assets/images/up-arrow.png" alt="Up button" width="50px"></button>
