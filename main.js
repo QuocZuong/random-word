@@ -69,7 +69,7 @@ generateButton.addEventListener("click", () => { // function generate random wor
         }
         quoteDisplay.innerHTML = randomWords.trim();
     } else { // generate by default txt file of server
-        fetch("/assets/text.txt") // using fetch API to get content of local file text.txt
+        fetch("./assets/text.txt") // using fetch API to get content of local file text.txt
             .then((response) => response.blob())
             .then((blob) => { // content of file are read as a blob object 
                 const fileReader = new FileReader();
