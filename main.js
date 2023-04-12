@@ -103,9 +103,12 @@ window.addEventListener("scroll", function() {
     if (this.window.pageYOffset > 0) {
         scrollToTop.style.display = 'block';
     } else {
-        scrollToTop.style.display = 'none';
+        if (window.innerWidth >= 600) {
+            scrollToTop.style.display = 'none';
+        }
     }
 })
+
 
 scrollToTop.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
