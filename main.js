@@ -8,13 +8,18 @@ const inputWord = document.getElementById("inputWord");
 const darkMode = document.getElementById("darkModeBtn");
 const scrollToTop = document.getElementById("upToHeader");
 
-inputNumber.addEventListener("input", function(event) {
-    let afterFilter = inputNumber.value.replace(/[^0-9]/g, ""); //remove character word in text
-    if (afterFilter !== "") {
-        inputNumber.value = afterFilter;
-    }
+inputNumber.addEventListener("input", function(event) { // increase width of input tag when type
 
-    inputNumber.cols += Math.ceil(inputNumber.value.length / 10);
+    const valueLength = inputNumber.value.length;
+    inputNumber.style.width = (valueLength + 3) + 'ch';
+
+});
+
+
+inputNumber.addEventListener("keydown", function(event) { // prevent input more than 7 nu
+    if (event.key === ' ' || event.key === '-' || event.key === '.' || event.key === ',' || (inputNumber.value.length >= 7 && event.key !== 'Backspace' && event.key !== 'Delete' && event.key !== 'ArrowLeft' && event.key !== 'ArrowRight')) {
+        event.preventDefault();
+    }
 });
 
 inputNumber.addEventListener("keydown", function(event) { //function to calculate length of textarea input number of word when user delete character
