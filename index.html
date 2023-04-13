@@ -25,8 +25,12 @@
                 <button type="reset" id="resetButton">Reset</button>
                 <button type="button" class="dark-mode-btn" id="darkModeBtn">Dark mode</button>
             </div>
-            <div class="number-of-word" id="numberOfWord">Number of word: <textarea class="input-number" name="inputNumber" id="inputNumber" cols="4" rows="1" wrap="off">100</textarea></div>
+            <div class="input">
+                <div class="number-of-word" id="numberOfWord">Number of word: </div>
+                <input type="number" class="input-number" name="inputNumber" id="inputNumber" maxlength="9" value="100"></input>
+            </div>
         </div>
+
 
         <div class="quote-display" id="quoteDisplay"></div>
         <textarea name="inputWord" id="inputWord" cols="39" rows="5"></textarea>
