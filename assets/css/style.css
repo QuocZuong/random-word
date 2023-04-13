@@ -45,6 +45,14 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
+    float: left;
+}
+
+.input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
 }
 
 body.dark-mode .number-of-word {
@@ -68,9 +76,10 @@ body.dark-mode .quote-display {
     color: #33374c;
     border-radius: .5rem;
     font-size: 4rem;
+    width: 15rem;
     text-align: center;
     resize: none;
-    margin-left: 2rem;
+    margin-left: 1.5rem;
 }
 
 body.dark-mode .input-number {
@@ -159,15 +168,12 @@ body.dark-mode #inputWord {
         color: #cccbc0;
     }
     .number-of-word {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         line-height: 4ch;
-        margin-bottom: 2rem;
     }
     .input-number {
         font-size: 1.5rem;
+        width: 25%;
     }
     #inputWord {
         font-size: 2rem;
@@ -191,5 +197,9 @@ body.dark-mode #inputWord {
     }
     #scrollToTop {
         display: block !important;
+    }
+    #upToHeader {
+        width: 2rem;
+        height: 1rem;
     }
 }
