@@ -7,22 +7,39 @@ const resetButton = document.getElementById("resetButton");
 const inputWord = document.getElementById("inputWord");
 const darkMode = document.getElementById("darkModeBtn");
 const scrollToTop = document.getElementById("upToHeader");
+let isDarkModeEnabled = false;
 
-inputNumber.addEventListener("input", function(event) { // increase width of input tag when type
+if(sessionStorage.getItem("darkModeEnabled") === "true"){
+    isDarkModeEnabled = true;
+    document.body.classList.add("dark-mode");
+}
+
+inputNumber.addEventListener("input", function(event) {
+    // increase width of input tag when type
 
     const valueLength = inputNumber.value.length;
-    inputNumber.style.width = (valueLength + 3) + 'ch';
-
+    inputNumber.style.width = valueLength + 3 + "ch";
 });
 
-
-inputNumber.addEventListener("keydown", function(event) { // prevent input more than 7 nu
-    if (event.key === ' ' || event.key === '-' || event.key === '.' || event.key === ',' || (inputNumber.value.length >= 7 && event.key !== 'Backspace' && event.key !== 'Delete' && event.key !== 'ArrowLeft' && event.key !== 'ArrowRight')) {
+inputNumber.addEventListener("keydown", function(event) {
+    // prevent input more than 7 nu
+    if (
+        event.key === " " ||
+        event.key === "-" ||
+        event.key === "." ||
+        event.key === "," ||
+        (inputNumber.value.length >= 7 &&
+            event.key !== "Backspace" &&
+            event.key !== "Delete" &&
+            event.key !== "ArrowLeft" &&
+            event.key !== "ArrowRight")
+    ) {
         event.preventDefault();
     }
 });
 
-inputNumber.addEventListener("keydown", function(event) { //function to calculate length of textarea input number of word when user delete character
+inputNumber.addEventListener("keydown", function(event) {
+    //function to calculate length of textarea input number of word when user delete character
     const previousLength = inputNumber.value.length;
 
     setTimeout(function() {
@@ -35,19 +52,22 @@ inputNumber.addEventListener("keydown", function(event) { //function to calculat
     }, 0);
 });
 
-copyButton.addEventListener("click", () => { // function for copy button
+copyButton.addEventListener("click", () => {
+    // function for copy button
     const textToCopy = quoteDisplay.innerHTML;
     navigator.clipboard.writeText(textToCopy);
 });
 
-generateButton.addEventListener("click", () => { // function generate random word
+generateButton.addEventListener("click", () => {
+    // function generate random word
     inputWord.style.display = "none";
     let numWords = inputNumber.value;
     if (numWords === "") {
         numWords = 100; // set default equal 100
     }
 
-    if (fileInput.files.length) { // generate by file input
+    if (fileInput.files.length) {
+        // generate by file input
         const file = fileInput.files[0]; // create file contain object
         const fileReader = new FileReader();
         fileReader.readAsText(file);
@@ -64,7 +84,8 @@ generateButton.addEventListener("click", () => { // function generate random wor
 
             quoteDisplay.innerHTML = randomWords.trim();
         };
-    } else if (inputWord.value.length) { // generate by user input word
+    } else if (inputWord.value.length) {
+        // generate by user input word
         const words = inputWord.value.split(" ");
         let randomWords = "";
         for (let i = 0; i < numWords; i++) {
@@ -73,10 +94,12 @@ generateButton.addEventListener("click", () => { // function generate random wor
             randomWords += `${word} `;
         }
         quoteDisplay.innerHTML = randomWords.trim();
-    } else { // generate by default txt file of server
+    } else {
+        // generate by default txt file of server
         fetch("./assets/text.txt") // using fetch API to get content of local file text.txt
             .then((response) => response.blob())
-            .then((blob) => { // content of file are read as a blob object 
+            .then((blob) => {
+                // content of file are read as a blob object
                 const fileReader = new FileReader();
                 fileReader.readAsText(blob); // fileReader.readAsText need a blob object
                 fileReader.onload = () => {
@@ -92,29 +115,43 @@ generateButton.addEventListener("click", () => { // function generate random wor
 
                     quoteDisplay.innerHTML = randomWords.trim();
                 };
-            });
+            })
+            .catch((error) => {
+                // Handle any errors that occurred during the fetch or read operation
+                console.log("An error occurred:", error);
+              });
     }
 });
+
+const toggleDarkMode = () => {
+    isDarkModeEnabled = !isDarkModeEnabled;
+    if (isDarkModeEnabled) {
+      document.body.classList.add("dark-mode");
+      sessionStorage.setItem("darkModeEnabled", "true");
+    } else {
+      document.body.classList.remove("dark-mode");
+      sessionStorage.setItem("darkModeEnabled", "false");
+    }
+  };
 
 resetButton.addEventListener("click", () => {
     location.reload();
 });
 
 darkMode.addEventListener("click", () => {
-    document.body.classList.toggle('dark-mode');
+    toggleDarkMode();
 });
 
 window.addEventListener("scroll", function() {
     if (this.window.pageYOffset > 0) {
-        scrollToTop.style.display = 'block';
+        scrollToTop.style.display = "block";
     } else {
         if (window.innerWidth >= 600) {
-            scrollToTop.style.display = 'none';
+            scrollToTop.style.display = "none";
         }
     }
-})
+});
 
-
-scrollToTop.addEventListener('click', () => {
+scrollToTop.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
 });
