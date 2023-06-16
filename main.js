@@ -22,7 +22,7 @@ inputNumber.addEventListener("input", function(event) {
 });
 
 inputNumber.addEventListener("keydown", function(event) {
-    // prevent input more than 7 nu
+    // prevent input more than 7 length
     if (
         event.key === " " ||
         event.key === "-" ||
