@@ -1,2 +1,2 @@
 # randomWord
-i create this page for my self and my friends
+I create this page for myself and my friends
