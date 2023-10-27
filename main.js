@@ -9,19 +9,19 @@ const darkMode = document.getElementById("darkModeBtn");
 const scrollToTop = document.getElementById("upToHeader");
 let isDarkModeEnabled = false;
 
-if(sessionStorage.getItem("darkModeEnabled") === "true"){
+if (sessionStorage.getItem("darkModeEnabled") === "true") {
     isDarkModeEnabled = true;
     document.body.classList.add("dark-mode");
 }
 
-inputNumber.addEventListener("input", function(event) {
+inputNumber.addEventListener("input", function () {
     // increase width of input tag when type
 
     const valueLength = inputNumber.value.length;
     inputNumber.style.width = valueLength + 3 + "ch";
 });
 
-inputNumber.addEventListener("keydown", function(event) {
+inputNumber.addEventListener("keydown", function (event) {
     // prevent input more than 7 length
     if (
         event.key === " " ||
@@ -38,11 +38,11 @@ inputNumber.addEventListener("keydown", function(event) {
     }
 });
 
-inputNumber.addEventListener("keydown", function(event) {
+inputNumber.addEventListener("keydown", function (event) {
     //function to calculate length of textarea input number of word when user delete character
     const previousLength = inputNumber.value.length;
 
-    setTimeout(function() {
+    setTimeout(function () {
         const currentLength = inputNumber.value.length;
         if (currentLength === 0) {
             inputNumber.cols = 1;
@@ -119,20 +119,20 @@ generateButton.addEventListener("click", () => {
             .catch((error) => {
                 // Handle any errors that occurred during the fetch or read operation
                 console.log("An error occurred:", error);
-              });
+            });
     }
 });
 
 const toggleDarkMode = () => {
     isDarkModeEnabled = !isDarkModeEnabled;
     if (isDarkModeEnabled) {
-      document.body.classList.add("dark-mode");
-      sessionStorage.setItem("darkModeEnabled", "true");
+        document.body.classList.add("dark-mode");
+        sessionStorage.setItem("darkModeEnabled", "true");
     } else {
-      document.body.classList.remove("dark-mode");
-      sessionStorage.setItem("darkModeEnabled", "false");
+        document.body.classList.remove("dark-mode");
+        sessionStorage.setItem("darkModeEnabled", "false");
     }
-  };
+};
 
 resetButton.addEventListener("click", () => {
     location.reload();
@@ -142,7 +142,7 @@ darkMode.addEventListener("click", () => {
     toggleDarkMode();
 });
 
-window.addEventListener("scroll", function() {
+window.addEventListener("scroll", function () {
     if (this.window.pageYOffset > 0) {
         scrollToTop.style.display = "block";
     } else {
